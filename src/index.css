@@ -1,0 +1,23 @@
+.Index {
+    display: flex;
+    justify-content: center;
+    font-size: larger;
+}
+
+.Index * {
+    margin-inline: .5em;
+}
+
+.Index .intro {
+    max-width: 40em;
+}
+
+.Index .intro h1 {
+    text-align: center;
+}
+
+@media (orientation: portrait) {
+    .Index {
+        flex-direction: column;
+    }
+}
