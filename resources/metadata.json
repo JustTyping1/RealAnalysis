@@ -1,0 +1,18 @@
+[
+  {
+    "title": "Classical Mechanics — Lecture Notes",
+    "file": "classical-mechanics.pdf",
+    "size": "1.2 MB",
+    "type": "PDF",
+    "tags": ["physics", "notes"],
+    "description": "Concise notes covering Newtonian mechanics, conservation laws, and oscillations."
+  },
+  {
+    "title": "Linear Algebra Cheatsheet",
+    "file": "linear-algebra-cheatsheet.pdf",
+    "size": "120 KB",
+    "type": "PDF",
+    "tags": ["math", "cheatsheet"],
+    "description": "Key formulas and identities for matrices, eigenvalues, and common transforms."
+  }
+]

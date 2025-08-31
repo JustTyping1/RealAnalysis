@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Article Title – Real Analysis</title>
+  <style>
+    /* Reset & base */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      color: #222;
+      line-height: 1.6;
+      background: #fdfdfd;
+    }
+
+    html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    }
+
+    body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* full viewport height */
+    }
+
+    main {
+    flex: 1; /* main grows to push footer down */
+    }
+
+
+    /* Progress bar */
+    #progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 6px; /* slightly thicker */
+      background: #FFD700; /* yellow */
+      width: 0%;
+      z-index: 1000;
+      transition: width 0.2s ease-out;
+    }
+
+    /* Header (navbar) */
+    header {
+      background: #111;
+      color: #fff;
+      padding: 1rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-weight: 600;
+      font-size: 1.15rem;
+      letter-spacing: 0.2px;
+      color: #fff;
+    }
+    .brand .pi {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.25rem;
+    }
+    nav a {
+      color: #eee;
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: color .15s ease;
+    }
+    nav a:hover { color: #e6b800; }
+
+    /* Article section */
+    main {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+    main h1 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+    .authors {
+      font-size: 0.95rem;
+      margin-bottom: 2rem;
+      color: #555;
+    }
+    .authors a {
+      color: #e6b800;
+      text-decoration: none;
+      margin-right: 0.5rem;
+    }
+    .authors a:hover {
+      text-decoration: underline;
+    }
+    .article-content {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: #333;
+    }
+
+    /* Footer */
+    footer {
+      background: #111;
+      color: #ccc;
+      text-align: center;
+      padding: 1.5rem;
+      margin-top: auto;
+      font-size: 0.95rem;
+    }
+    footer em { color: #ddd; font-style: italic; }
+  </style>
+</head>
+<body>
+
+  <!-- Progress Bar -->
+  <div id="progress-bar"></div>
+
+  <header>
+    <div class="brand">
+      <span class="pi">π</span>
+      <span>Real Analysis</span>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../articles.html">Articles</a></li>
+        <li><a href="../aboutus.html">About</a></li>
+        <li><a href="../resources.html">Resources</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Placeholder Article Title</h1>
+
+    <!-- Multiple Authors -->
+    <p class="authors">
+      By 
+      <a href="../aboutus.html">Author One</a>,
+      <a href="../aboutus.html">Author Two</a>,
+      <a href="../aboutus.html">Author Three</a>
+    </p>
+
+    <!-- Article content -->
+    <div class="article-content">
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse at arcu quis libero feugiat egestas. Proin mattis risus sit amet arcu tincidunt, a gravida nulla placerat.</p>
+      <p>Phasellus vehicula, justo vel vehicula luctus, nulla purus efficitur ex, sit amet cursus nisl augue eget sapien.</p>
+      <p>More paragraphs go here to simulate a real article and enable scrolling so the progress bar works.</p>
+      <p>Continue adding content as needed...</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse at arcu quis libero feugiat egestas. Proin mattis risus sit amet arcu tincidunt, a gravida nulla placerat.</p>
+      <p>Phasellus vehicula, justo vel vehicula luctus, nulla purus efficitur ex, sit amet cursus nisl augue eget sapien.</p>
+      <p>More paragraphs go here to simulate a real article and enable scrolling so the progress bar works.</p>
+      <p>Continue adding content as needed...</p>
+      <p>The famous equation of mass-energy equivalence is \( E = mc^2 \).</p>
+    </div>
+  </main>
+
+  <footer>
+    <p><em>"Truth is ever to be found in simplicity, and not in the multiplicity and confusion of things" – Sir Isaac Newton</em></p>
+  </footer>
+
+  <script>
+    // Progress bar logic
+    const progressBar = document.getElementById('progress-bar');
+
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY || window.pageYOffset;
+      const scrollHeight = document.body.scrollHeight - window.innerHeight;
+      const progress = (scrollTop / scrollHeight) * 100;
+      progressBar.style.width = progress + "%";
+    });
+  </script>
+</body>
+</html>

@@ -1,146 +1,206 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Real Analysis – Science Journalism</title>
   <style>
-    /* Base reset */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    /* Make body take full height */
-    html, body {
-      height: 100%;
-    }
-
+    /* Reset & base */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
     body {
+      min-height: 100%;
       display: flex;
       flex-direction: column;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-        Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
       background: #f9f9fb;
       color: #222;
       line-height: 1.6;
     }
 
+    /* Header */
     header {
       background: #111;
       color: #fff;
-      padding: 1.5rem 2rem;
+      padding: 1.25rem 1.5rem;
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
     }
-    header h1 {
-      font-size: 1.6rem;
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 1.15rem; /* size of "Real Analysis" */
       font-weight: 600;
-      letter-spacing: 0.5px;
     }
+
     nav ul {
       list-style: none;
       display: flex;
-      gap: 1.5rem;
+      gap: 1.25rem;
+      align-items: center;
     }
     nav a {
       color: #eee;
       text-decoration: none;
-      font-size: 1rem;
-      transition: color 0.2s ease;
+      font-size: 0.98rem;
+      transition: color .15s ease;
     }
-    nav a:hover {
-      color: #e6b800;
-    }
+    nav a:hover { color: #e6b800; }
 
+    /* Hero */
     .hero {
-      background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
+      background:
+        linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
         url('https://images.unsplash.com/photo-1447433819943-74a20887a81e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
       color: #fff;
       text-align: center;
-      padding: 6rem 2rem;
+      padding: 5.25rem 1.25rem;
     }
-    .hero h2 {
-      font-size: 2.4rem;
-      margin-bottom: 1rem;
+    .hero h2 { font-size: 2.2rem; margin-bottom: .6rem; font-weight: 600; }
+    .hero p { font-size: 1.05rem; max-width: 760px; margin: 0 auto; color: #e9e9ef; }
+
+    /* Latest Articles section (horizontal row) */
+    .latest-articles {
+      max-width: 1100px;
+      margin: 2.25rem auto;
+      padding: 0 1.25rem;
+      text-align: center;
+    }
+    .latest-articles h2 {
+      font-size: 1.9rem;
+      margin-bottom: 1.25rem;
       font-weight: 600;
-    }
-    .hero p {
-      font-size: 1.1rem;
-      max-width: 650px;
-      margin: 0 auto;
+      color: #111;
     }
 
-    main {
-      flex: 1; /* Fill remaining space to push footer down */
-      max-width: 1100px;
-      margin: 3rem auto;
-      padding: 0 2rem;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
+    .articles-row {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      align-items: stretch;
+      flex-wrap: wrap; /* wraps to next line on smaller screens */
     }
+
+    /* card sizing: fixed preferred width but flexible on narrow screens */
     .article-card {
       background: #fff;
-      border-radius: 8px;
-      box-shadow: 0 3px 6px rgba(0,0,0,0.08);
+      border-radius: 10px;
+      box-shadow: 0 6px 18px rgba(4,8,15,0.06);
       overflow: hidden;
-      transition: transform 0.2s ease;
+      width: 320px;           /* primary width for horizontal layout */
+      flex: 0 1 320px;        /* don't grow beyond width, but allow shrinking */
+      transition: transform .18s ease, box-shadow .18s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
     }
     .article-card:hover {
-      transform: translateY(-4px);
+      transform: translateY(-6px);
+      box-shadow: 0 10px 24px rgba(4,8,15,0.10);
     }
     .article-card img {
       width: 100%;
-      height: 220px;
+      height: 200px;
       object-fit: cover;
+      display: block;
+    }
+    /* optional content area under image (kept minimal) */
+    .article-card .meta {
+      padding: 1rem;
+      text-align: left;
+    }
+    .article-card .meta h3 {
+      font-size: 1.05rem;
+      margin-bottom: .4rem;
+      color: #111;
+    }
+    .article-card .meta p {
+      font-size: .95rem;
+      color: #555;
     }
 
+    /* Footer */
     footer {
       background: #111;
       color: #ccc;
       text-align: center;
-      padding: 2rem;
-      font-size: 0.9rem;
-      flex-shrink: 0; /* Prevent shrinking */
+      padding: 1.5rem;
+      margin-top: auto; /* push footer to bottom when content short */
+      font-size: 0.95rem;
     }
-    footer a {
-      color: #e6b800;
-      text-decoration: none;
+    footer em { color: #ddd; font-style: italic; }
+
+    /* Responsive rules */
+    @media (max-width: 980px) {
+      .article-card { width: 45%; flex: 0 1 45%; }
+      .article-card img { height: 170px; }
+    }
+    @media (max-width: 640px) {
+      .hero { padding: 3.5rem 1rem; }
+      .article-card { width: 100%; flex: 0 1 100%; }
+      .article-card img { height: 180px; }
+      .latest-articles h2 { font-size: 1.5rem; }
     }
   </style>
 </head>
 <body>
 
   <header>
-    <h1>Real Analysis</h1>
+    <div class="brand">
+      <span>Real Analysis</span>
+    </div>
+
     <nav>
       <ul>
+        <li><a href="index.html">Home</a></li>
         <li><a href="articles.html">Articles</a></li>
         <li><a href="aboutus.html">About</a></li>
+        <li><a href="./resources.html">Resources</a></li>
       </ul>
     </nav>
   </header>
 
   <section class="hero">
-    <h2>Science, Explained with Rigor</h2>
-    <p>Real Analysis is driven by a group of students passionate about science and mathematics, and who want to share that passion with the world.</p>
+    <h2>Science and Mathematics with clarity and vision</h2>
+    <p>Real Analysis was ceated by a group of high-school students passionate about science and mathematics, intent on sharing that passion with the world.</p>
   </section>
 
   <main>
-  <div class="article-card">
-    <img src="https://images.unsplash.com/photo-1635070041078-e363dbe0052c?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=80" alt="Article image">
-  </div>
+    <section class="latest-articles" aria-labelledby="latest-heading">
+      <h2 id="latest-heading">Latest Articles</h2>
 
-  <div class="article-card">
-    <img src="https://images.unsplash.com/photo-1581093588401-22c7b6e4c3a6?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=80" alt="Article image">
-  </div>
+      <div class="articles-row">
+        <article class="article-card" aria-label="Article 1">
+          <img src="https://images.unsplash.com/photo-1635070041078-e363dbe0052c?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=80" alt="Telescope and sky">
+          <div class="meta">
+            <h3>Article Placeholder</h3>
+            <p>Short description (optional). Click through to read the full article.</p>
+          </div>
+        </article>
+
+        <article class="article-card" aria-label="Article 2">
+          <img src="https://images.unsplash.com/photo-1581093588401-22c7b6e4c3a6?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=80" alt="Equations on a board">
+          <div class="meta">
+            <h3>Article Placeholder</h3>
+            <p>Short description (optional). Click through to read the full article.</p>
+          </div>
+        </article>
+
+        <article class="article-card" aria-label="Article 3">
+          <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=80" alt="Data visualisation">
+          <div class="meta">
+            <h3>Article Placeholder</h3>
+            <p>Short description (optional). Click through to read the full article.</p>
+          </div>
+        </article>
+      </div>
+    </section>
   </main>
 
   <footer>
-    <p>&copy; 2025 Real Analysis. All rights reserved. | <a href="#">Privacy Policy</a></p>
+    <p><em>"Truth is ever to be found in simplicity, and not in the multiplicity and confusion of things" – Sir Isaac Newton</em></p>
   </footer>
 
 </body>
